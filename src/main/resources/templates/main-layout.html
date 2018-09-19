@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM Project</title>
+</head>
+<body>
+<h1 th:text="'Betting site'"></h1>
+<p><a th:href="@{'/home'}" th:text="'Homepage'"></a></p>
+<div sec:authorize="isAuthenticated()">
+    <form th:action="@{/logoutpage}" method="post">
+        <input type="submit" value="Log out"/>
+    </form>
+</div>
+<div layout:fragment="content">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="main-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Bet Details</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <table>
+        <thead>
+        <tr>
+            <th>Match time</th>
+            <th>Teams</th>
+            <th>Odds</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bet: ${slipBets}" th:object="${bet}">
+            <td th:text="${#temporals.format(bet.game.startTime, 'dd-MM-yyyy HH:mm')}"></td>
+            <td th:text="|*{game.homeTeam.name} vs *{game.awayTeam.name}|"></td>
+            <td th:text="*{odds}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

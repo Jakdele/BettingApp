@@ -1,0 +1,33 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="main-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Game details</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:object="${game}">
+    <table>
+        <thead>
+        <tr>
+            <th>Start time</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>League</th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${#temporals.format(game.startTime, 'dd-MM-yyyy HH:mm')}"></td>
+            <td th:text="*{homeTeam.name}"></td>
+            <td th:text="*{awayTeam.name}"></td>
+            <td th:text="*{league.name}"></td>
+            <td th:text="*{country.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+</body>
+</html>
