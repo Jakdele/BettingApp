@@ -7,7 +7,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <table>
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>Type</th>
@@ -23,6 +23,7 @@
         </tr>
         </tbody>
     </table>
+    <p class="text-black" th:text="'Your funds: ' + ${#numbers.formatDecimal(user.wallet.balance, 0, 'COMMA', 2, 'POINT')}"></p>
 </div>
 </body>
 </html>

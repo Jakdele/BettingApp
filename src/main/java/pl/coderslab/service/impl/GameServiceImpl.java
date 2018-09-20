@@ -86,6 +86,22 @@ public class GameServiceImpl implements GameService {
 //        List<BetSLip> betsToCheck = betSlipRepository
     }
 
+    @Override
+    public List<Game> findAllByIsFinishedIsTrueAndLeagueId(int id) {
+        return gameRepository.findAllByFinishedTrueAndLeagueId(id);
+    }
+
+    @Override
+    public  List<Game> findTop100ByIsFinishedIsTrue() {
+        return gameRepository.findTop100ByFinishedIsTrue();
+    }
+
+    @Override
+    public Game findFirstById(int id) {
+        return gameRepository.findFirstById(id);
+    }
+
+
     private void checkBetSlip(BetSLip checkedSlip) {
         List<Bet> betsToCheck = checkedSlip.getBets();
         for (Bet betFromSlip :  betsToCheck) {

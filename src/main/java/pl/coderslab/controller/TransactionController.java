@@ -22,7 +22,8 @@ public class TransactionController {
     public String userWallet(Model model) {
         User user = userService.getCurrentUser();
         List<Transaction> transactions = transactionService.findAllbyWalletId(user.getWallet().getId());
-        model.addAttribute("transactionHistory",transactions );
+        model.addAttribute("user", user);
+        model.addAttribute("transactionHistory",transactions);
         return "user/wallet";
     }
 }

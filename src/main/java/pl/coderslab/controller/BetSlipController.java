@@ -34,10 +34,14 @@ public class BetSlipController {
     public String createNewBetSlip(HttpSession session, HttpServletRequest request, Model model) {
         User user = userService.getCurrentUser();
 
-        if(user.getWallet().getBalance().compareTo(new BigDecimal(request.getParameter("stake")))<0){
+        if (user.getWallet().getBalance().compareTo(new BigDecimal(request.getParameter("stake"))) < 0) {
             model.addAttribute("fundsError", "Insufficient funds on your account to place that bet");
             return "home";
-            }
+        }
+        if (Double.parseDouble(request.getParameter("stake")) <= 0) {
+            model.addAttribute("fundsError", "You have to enter a positive amount");
+            return "home";
+        }
         BetSLip betSLip = new BetSLip();
         betSLip.setUser(user);
         betSLip.setStake(new BigDecimal(request.getParameter("stake")));
@@ -47,15 +51,16 @@ public class BetSlipController {
     }
 
     @GetMapping("/details/{id}")
-    public String betDetails(@PathVariable int id, Model model){
-        model.addAttribute("slipBets" ,betService.findAllByBetSlipId(id));
+    public String betDetails(@PathVariable int id, Model model) {
+        model.addAttribute("slipBets", betService.findAllByBetSlipId(id));
         return "bet/details";
     }
+
     @ModelAttribute
-    public void homeAttributes(Model model, HttpSession session){
+    public void homeAttributes(Model model, HttpSession session) {
         User user = userService.getCurrentUser();
         List<Game> upcomingGames = gameService.getUpcoming();
-        model.addAttribute("user",user);
-        model.addAttribute("upcomingGames",upcomingGames);
+        model.addAttribute("user", user);
+        model.addAttribute("upcomingGames", upcomingGames);
     }
 }

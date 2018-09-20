@@ -17,6 +17,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 
 
+
     @Override
     public List<Transaction> findAllbyWalletId(int id) {
         return transactionRepository.findByWalletId(id);
@@ -25,5 +26,10 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction save(Transaction transaction) {
         return transactionRepository.save(transaction);
+    }
+
+    @Override
+    public List<Transaction> findAll() {
+        return transactionRepository.findAll();
     }
 }

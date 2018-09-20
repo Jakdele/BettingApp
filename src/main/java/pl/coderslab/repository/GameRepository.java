@@ -16,4 +16,9 @@ public interface GameRepository extends JpaRepository<Game, Integer> {
 
     List<Game> getAllByLiveGameIsTrue();
 
+    List<Game> findAllByFinishedTrueAndLeagueId(int id);
+
+    List<Game> findTop100ByFinishedIsTrue();
+
+    Game findFirstById(int id);
 }

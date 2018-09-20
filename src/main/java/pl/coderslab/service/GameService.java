@@ -27,4 +27,10 @@ public interface GameService {
     void generateResults(Game game);
 
     void checkWinningBets(Game game);
+
+    List<Game> findAllByIsFinishedIsTrueAndLeagueId(int id);
+
+    List<Game> findTop100ByIsFinishedIsTrue();
+
+    Game findFirstById(int id);
 }

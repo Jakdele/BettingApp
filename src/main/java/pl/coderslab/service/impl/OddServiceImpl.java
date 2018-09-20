@@ -32,6 +32,15 @@ public class OddServiceImpl implements OddService {
         return oddRepository.save(odd);
     }
 
+    /**
+     * This method generates the winning odds for every given game. It loads all the matches from any given team match-up history,
+     * and compares the home wins number to a total number of games in order to generate another home win probability.
+     * The same operation is then performed for draws and away wins. The probability is then converted to decimal odds,
+     * with small margin applied (set to 8%) in this example.
+     * @param id1 First team id
+     * @param id2  Second team id
+     * @return Odds for home win, draw, and away win in a decimal odds format.
+     */
     public Map<String, Double> generateOdds(int id1, int id2) {
         Map<String, Double> results = new HashMap<>();
         final double MARGIN = 1.08d;

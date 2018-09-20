@@ -32,6 +32,7 @@ public class LiveFeedService {
         List<Game> upcoming = gameService.getUpcoming();
         for (int i = 0; i < upcoming.size(); i++) {
             Game liveGame = upcoming.get(i);
+            if(liveGame.isFinished())break;
             liveGame.setLiveGame(true);
             gameRepository.save(liveGame);
             generateLiveEvents(liveGame);
