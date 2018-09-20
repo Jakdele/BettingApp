@@ -28,7 +28,7 @@ public class AdminController {
             game.setFinished(true);
             gameService.save(game);
         }
-        return "admin/admin_panel";
+        return "home";
     }
 
 }

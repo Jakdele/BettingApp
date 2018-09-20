@@ -1,14 +1,11 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       layout:decorator="main-layout">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Panel</title>
-</head>
-<body>
-<a th:href="@{/admin/finish/}" th:text="'Finish all matches'"></a><
-<a th:href="@{/admin/generate/}" th:text="'Generate unfinished matches'"></a>
-<a th:href="@{/admin/livefeed/}" th:text="'Start live feed'"></a>
-</tr>
-</body>
+<div layout:fragment="content">
+    <div class="card-body">
+        <a class="btn btn-primary" th:href="@{/admin/finish/}" th:text="'Finish all matches'"></a>
+        <a class="btn btn-primary" th:href="@{/admin/generate/}" th:text="'Generate unfinished matches'"></a>
+        <a class="btn btn-primary" th:href="@{/admin/livefeed/}" th:text="'Start live feed'"></a>
+    </div>
+</div>
 </html>

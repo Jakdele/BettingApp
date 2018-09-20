@@ -27,7 +27,7 @@ public class RegisterController {
     @PostMapping("/user/register")
     public String addUser(@Valid User user, BindingResult result){
         if(result.hasErrors()){
-            return "register";
+            return "forms/register";
         }
         userService.saveUser(user);
         return "redirect:/home";

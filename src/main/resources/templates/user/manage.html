@@ -7,13 +7,15 @@
 </head>
 <body>
 <div layout:fragment="content">
+    <p class="text-black" th:text="'Your funds: ' + ${#numbers.formatDecimal(user.wallet.balance, 0, 'COMMA', 2, 'POINT')}"></p>
     <form th:action="@{/wallet/deposit}" method="post">
-    <input th:text="Amount" th:name="deposit"/>
+    <input type="number" th:step="0.01" th:name="deposit"/>
     <button name="wallet" th:text="'Deposit'" type="submit"></button>
     </form>
 
+    <p th:if="${balanceError }" th:text="${balanceError}"></p>
     <form th:action="@{/wallet/withdraw}" method="post">
-        <input th:text="Amount" th:name="withdraw"/>
+        <input type="number" th:step="0.01" th:name="withdraw"/>
         <button name="wallet" th:text="'Withdraw'" type="submit"></button>
     </form>
 </div>

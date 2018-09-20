@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CheckEmail {
 
-    String message() default "{Email taken}";
+    String message() default "Email taken";
 
     Class<?>[] groups() default {};
 

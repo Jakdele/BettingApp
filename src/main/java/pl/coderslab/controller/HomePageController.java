@@ -27,6 +27,7 @@ public class HomePageController {
     public void homeAttributes(Model model, HttpSession session){
         User user = userService.getCurrentUser();
         List<Game> upcomingGames = gameService.getUpcoming();
+        session.setAttribute("user", user);
         model.addAttribute("user",user);
         model.addAttribute("upcomingGames",upcomingGames);
     }
@@ -38,7 +39,7 @@ public class HomePageController {
         return "home";
     }
 
-    @RequestMapping("/logoutpage")
+    @GetMapping("/logoutpage")
     public String logOut() {
         return "logout";
     }

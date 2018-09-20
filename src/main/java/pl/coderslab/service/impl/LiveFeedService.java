@@ -5,6 +5,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import pl.coderslab.entity.Event;
 import pl.coderslab.entity.Game;
+import pl.coderslab.entity.Team;
 import pl.coderslab.entity.enums.EventType;
 import pl.coderslab.repository.EventRepository;
 import pl.coderslab.repository.GameRepository;
@@ -44,21 +45,23 @@ public class LiveFeedService {
     }
 
     public void generateLiveEvents(Game game) {
-            List<Event> gameEvents = new ArrayList<>();
+        List<Event> gameEvents = new ArrayList<>();
         for (EventType eventType : EventType.values()) {
             Event liveEvent = new Event(eventType, LocalDateTime.now());
             switch (eventType) {
                 case FAUL:
-                    liveEvent.setTeamName(randomTeam(game));
+                    liveEvent.setTeamName(randomTeam(game).getName());
                     break;
                 case GOAL:
-                    liveEvent.setTeamName(randomTeam(game));
+                    Team team = randomTeam(game);
+                    addScore(team, game);
+                    liveEvent.setTeamName(team.getName());
                     break;
                 case CORNER:
-                    liveEvent.setTeamName(randomTeam(game));
+                    liveEvent.setTeamName(randomTeam(game).getName());
                     break;
                 case PENALTY:
-                    liveEvent.setTeamName(randomTeam(game));
+                    liveEvent.setTeamName(randomTeam(game).getName());
                     break;
             }
             eventRepository.save(liveEvent);
@@ -79,13 +82,23 @@ public class LiveFeedService {
 
     }
 
-    public String randomTeam(Game game) {
+    private void addScore(Team team, Game game) {
+        if(team.equals(game.getAwayTeam())){
+            game.setAwayScore(game.getAwayScore()+1);
+        } else {
+            game.setHomeScore(game.getHomeScore()+1);
+        }
+        gameRepository.save(game);
+    }
+
+
+    public Team randomTeam(Game game) {
         Random randy = new Random();
         int i = randy.nextInt();
         if (i == 0) {
-            return game.getHomeTeam().getName();
+            return game.getHomeTeam();
         } else {
-            return game.getAwayTeam().getName();
+            return game.getAwayTeam();
         }
     }
 

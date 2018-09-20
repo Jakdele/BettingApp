@@ -2,83 +2,85 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       layout:decorator="main-layout">
 <div layout:fragment="content">
-    <div sec:authorize="isAuthenticated()">
-        <p >User panel:<a th:href="@{/user/panel}" th:text="'User panel'"></a> </p>
-        <p>Welcome: <span sec:authentication="name"></span></p>
-        <form th:action="@{/logoutpage}" method="post">
-            <input type="submit" value="Log out"/>
-        </form>
-    </div>
 
-    <div sec:authorize="hasRole('ADMIN')">
-        <p >Admin panel:<a th:href="@{/admin/panel}" th:text="'Admin panel'"></a> </p>
-        <p>Welcome: <span sec:authentication="name"></span></p>
-    </div>
-    <div>
-        <a th:href="@{/livescore}" th:text="'Livescore'"></a>
-    </div>
     <h3>Upcoming games</h3>
-    <table>
-        <thead>
-        <tr>
-            <th>Match time</th>
-            <th>Teams</th>
-            <th>H</th>
-            <th>D</th>
-            <th>A</th>
-            <th>Details</th>
-        </tr>
-        </thead>
-        <tbody >
-        <tr th:each="game, iterStat: ${upcomingGames}" th:object="${game}">
-            <td th:text="${#temporals.format(game.startTime, 'dd-MM-yyyy HH:mm')}"></td>
-            <td th:text="|*{homeTeam.name} vs *{awayTeam.name}|"></td>
-            <td ><form th:action="@{'/bet/create/' + ${game.id}}" method="post">
-                <input th:type="hidden" th:value="HOME" th:name="betType"/>
-                <button name="createBet" th:text="${game.odd.homeOdds}" type="submit"></button>
-            </form></td>
-            <td ><form th:action="@{'/bet/create/' + ${game.id}}" method="post">
-                <input th:type="hidden" th:value="DRAW" th:name="betType"/>
-                <button name="createBet" th:text="${game.odd.drawOdds}" type="submit"></button>
-            </form></td>
-            <td ><form th:action="@{'/bet/create/' + ${game.id}}" method="post">
-                <input th:type="hidden" th:value="AWAY" th:name="betType"/>
-                <button name="createBet" th:text="${game.odd.awayOdds}" type="submit"></button>
-            </form></td>
-            <td><a th:href="@{/game/{game_id}/details(game_id = ${game.id})}"> Game details</a> </td>
-        </tr>
-        </tbody>
-    </table>
-<div>
-    <h3>Bets</h3>
-    <table>
-        <thead>
-        <tr>
-            <th>Match time</th>
-            <th>Teams</th>
-            <th>Odds</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="bet, iterStat : ${session.bets}" th:object="${bet}">
-            <td th:text="${#temporals.format(bet.game.startTime, 'dd-MM-yyyy HH:mm')}"></td>
-            <td th:text="|*{game.homeTeam.name} vs *{game.awayTeam.name}|"></td>
-            <td th:text="*{odds}"></td>
-            <td ><form th:action="@{'/bet/remove/' + ${iterStat.count}}" method="post">
-                <input th:type="hidden" th:value="AWAY" th:name="betType"/>
-                <button name="remove" th:text="Remove" type="submit"></button>
-            </form></td>
-        </tr>
-        </tbody>
-    </table>
-    <div th:if="${session.finalOdds != null}" >
-        <p th:text="|Total odds: ${session.finalOdds}|"></p>
-        <p th:if="${fundsError }" th:text="${fundsError}"></p>
-    <form th:action="@{'/slip/create/'}" method="post">
-        <input th:text="Stake" th:name="stake"/>
-        <button name="slip" th:text="'Place Bet'" type="submit"></button>
-    </form>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Match time</th>
+                        <th>Teams</th>
+                        <th>H</th>
+                        <th>D</th>
+                        <th>A</th>
+                        <th>Details</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="game, iterStat: ${upcomingGames}" th:object="${game}">
+                        <td th:text="${#temporals.format(game.startTime, 'dd-MM-yyyy HH:mm')}"></td>
+                        <td th:text="|*{homeTeam.name} vs *{awayTeam.name}|"></td>
+                        <td>
+                            <form th:action="@{'/bet/create/' + ${game.id}}" method="post">
+                                <input th:type="hidden" th:value="HOME" th:name="betType"/>
+                                <button name="createBet" th:text="${game.odd.homeOdds}" type="submit"></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{'/bet/create/' + ${game.id}}" method="post">
+                                <input th:type="hidden" th:value="DRAW" th:name="betType"/>
+                                <button name="createBet" th:text="${game.odd.drawOdds}" type="submit"></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{'/bet/create/' + ${game.id}}" method="post">
+                                <input th:type="hidden" th:value="AWAY" th:name="betType"/>
+                                <button name="createBet" th:text="${game.odd.awayOdds}" type="submit"></button>
+                            </form>
+                        </td>
+                        <td><a th:href="@{/game/{game_id}/details(game_id = ${game.id})}"> Game details</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-6">
+                <h3>Bets</h3>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Match time</th>
+                        <th>Teams</th>
+                        <th>Odds</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="bet, iterStat : ${session.bets}" th:object="${bet}">
+                        <td th:text="${#temporals.format(bet.game.startTime, 'dd-MM-yyyy HH:mm')}"></td>
+                        <td th:text="|*{game.homeTeam.name} vs *{game.awayTeam.name}|"></td>
+                        <td th:text="*{odds}"></td>
+                        <td>
+                            <form th:action="@{'/bet/remove/' + ${iterStat.count}}" method="post">
+                                <input th:type="hidden" th:value="AWAY" th:name="betType"/>
+                                <button name="remove" th:text="Remove" type="submit"></button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:if="${session.finalOdds != null}">
+                    <p th:text="|Total odds: ${session.finalOdds}|"></p>
+                    <p th:if="${fundsError }" th:text="${fundsError}"></p>
+                    <form th:action="@{'/slip/create/'}" method="post">
+                        <input type="number" th:step="0.01" th:name="stake"/>
+                        <button name="slip" th:text="'Place Bet'" type="submit"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </div>
 </html>

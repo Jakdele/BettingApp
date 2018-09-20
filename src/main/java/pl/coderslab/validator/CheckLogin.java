@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CheckLogin {
 
-    String message() default "{Login taken}";
+    String message() default "Login taken";
 
     Class<?>[] groups() default {};
 

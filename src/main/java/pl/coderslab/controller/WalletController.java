@@ -13,6 +13,7 @@ import pl.coderslab.service.UserService;
 import pl.coderslab.service.WalletService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 @Controller
@@ -30,18 +31,19 @@ public class WalletController {
 
 
     @PostMapping("/withdraw")
-    public String withdrawFunds(Model model, HttpServletRequest request) {
+    public String withdrawFunds(Model model, HttpServletRequest request, HttpSession session) {
         Wallet wallet = userService.getCurrentUser().getWallet();
         BigDecimal amount = new BigDecimal(request.getParameter("withdraw"));
         if (wallet.getBalance().compareTo(amount) < 0) {
             User user = userService.getCurrentUser();
             model.addAttribute("user", user);
-            return "user/panel";
+            model.addAttribute("balanceError", "Insufficient funds on your account");
+            return "user/manage";
         }
 
         walletService.withdraw(amount, wallet);
 
-        return "redirect:/user/panel";
+        return "redirect:/user/manage";
     }
 
     @PostMapping("/deposit")
@@ -50,6 +52,6 @@ public class WalletController {
         BigDecimal amount = new BigDecimal(request.getParameter("deposit"));
         walletService.deposit(amount, wallet);
 
-        return "redirect:/user/panel";
+        return "redirect:/user/manage";
     }
 }

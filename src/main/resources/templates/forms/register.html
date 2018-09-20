@@ -1,17 +1,103 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorator="main-layout">
-<div layout:fragment="content">
-    <form th:action="@{/user/register}" method="post" th:object="${user}">
-        <p>Name: <input th:type="text" th:field="*{firstName}"/></p>
-        <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">FirstName Error</p>
-        <p>Surname: <input th:type="text" th:field="*{lastName}"/></p>
-        <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</p>
-        <p>Login: <input th:type="text" th:field="*{username}"/></p>
-        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Login Error</p>
-        <p>Email: <input th:type="text" th:field="*{email}"/></p>
-        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>
-        <p>Password: <input th:type="password" th:field="*{password}"/></p>
-        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>
-        <p><input type="submit" value="Submit"/></p>
-    </form>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Betting site - login</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="/static/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/static/css/sb-admin.css" rel="stylesheet">
+
+</head>
+<body  class="bg-dark">
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Register</div>
+            <div class="card-body">
+                <form th:action="@{/user/register}" method="post" th:object="${user}">
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input th:type="text" th:field="*{firstName}" id="name" class="form-control"
+                                   placeholder="Name">
+                            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">FirstName Error</p>
+                            <label for="name">Name</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input th:type="text" th:field="*{lastName}" id="lastName" class="form-control"
+                                   placeholder="Surname">
+                            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</p>
+                            <label for="name">Surname</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input th:type="text" th:field="*{username}" id="username" class="form-control"
+                                   placeholder="Login" type="text" name="username">
+                            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Login Error</p>
+                            <label for="email">Login</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input th:type="text" th:field="*{email}" id="email" class="form-control"
+                                   placeholder="Email" type="email" name="email">
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p>
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            <input th:type="password" th:field="*{password}" id="inputPassword" class="form-control"
+                                   placeholder="Password" type="password"
+                                   name="password">
+                            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>
+                            <label for="inputPassword">Password</label>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" value="Register"/>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="/static/vendor/chart.js/Chart.min.js"></script>
+    <script src="/static/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="/static/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/static/js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="/static/js/demo/datatables-demo.js"></script>
+    <script src="/static/js/demo/chart-area-demo.js"></script>
+</body>
 </html>
