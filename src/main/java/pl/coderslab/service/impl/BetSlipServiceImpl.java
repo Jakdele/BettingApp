@@ -11,6 +11,7 @@ import pl.coderslab.service.BetSlipService;
 import pl.coderslab.service.UserService;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -46,11 +47,15 @@ public class BetSlipServiceImpl implements BetSlipService {
     public void saveNewSlip(BetSLip betSLip, HttpSession session) {
        List<Bet> bets = (List<Bet>) session.getAttribute("bets");
         for (Bet bet:bets) {
-            bet.setBetSlip(betSLip);
+            if(bet.getGame().isLiveGame()||bet.getGame().isFinished()){
+                bets.remove(bet);
+            }else {
+                bet.setBetSlip(betSLip);
+            }
         }
         Wallet wallet = walletRepository.findByUser(betSLip.getUser());
         wallet.setBalance(wallet.getBalance().subtract(betSLip.getStake()));
-        Transaction transaction = new Transaction(betSLip.getStake(),TransactionType.PLACED_BET,wallet);
+        Transaction transaction = new Transaction(betSLip.getStake(),TransactionType.PLACED_BET,wallet, LocalDateTime.now());
         transactionRepository.save(transaction);
        betSLip.setBets(bets);
        betSLip.setCounter(bets.size());

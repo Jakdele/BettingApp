@@ -13,6 +13,8 @@ public interface GameService {
 
     List<Game> getUpcoming();
 
+    List<Game> getLiveGames();
+
     void generateUpcomingGames();
 
     List<Game> getAllByHomeTeamId(int id);
@@ -24,4 +26,5 @@ public interface GameService {
 
     void generateResults(Game game);
 
+    void checkWinningBets(Game game);
 }

@@ -5,11 +5,14 @@ INSERT INTO Betting_Db.country (id, name) VALUES (3, 'Madagascar');
 INSERT INTO Betting_Db.role (role_id, role) VALUES (1, 'ROLE_ADMIN');
 INSERT INTO Betting_Db.role (role_id, role) VALUES (2, 'ROLE_USER');
 
-INSERT INTO Betting_Db.user (id, email, first_name, last_name, username, enabled, password) VALUES (1, 'admin@admin', 'admin', 'admin', 'admin',true,'$2a$10$7j9m7gaS/LRXGvS4dpHqw.KNe7D4A2bnyRRaYJ9xVAWXKkQyhByuG');
+INSERT INTO Betting_Db.user (id, email, enabled, first_name, last_name, password, username) VALUES (1, 'admin@admin', true, 'admin', 'admin', '$2a$10$7j9m7gaS/LRXGvS4dpHqw.KNe7D4A2bnyRRaYJ9xVAWXKkQyhByuG', 'admin');
+INSERT INTO Betting_Db.user (id, email, enabled, first_name, last_name, password, username) VALUES (2, 'john@john', true, 'John', 'Doe', '$2a$10$0VW0bzbU0OIOUbjuSWWAxuSg86eS7254sGKoOt3QxZG/PjrV6yRP6', 'john');
 INSERT INTO Betting_Db.user_roles (user_id, roles_role_id) VALUES (1, 1);
 INSERT INTO Betting_Db.user_roles (user_id, roles_role_id) VALUES (1, 2);
+INSERT INTO Betting_Db.user_roles (user_id, roles_role_id) VALUES (2, 2);
 
 INSERT INTO Betting_Db.wallet (id, balance, user_id) VALUES (1, 1000.00, 1);
+INSERT INTO Betting_Db.wallet (id, balance, user_id) VALUES (2, 50.00, 2);
 
 INSERT INTO Betting_Db.league (id, name, country_id) VALUES (1, 'Ekstraklasa', 1);
 INSERT INTO Betting_Db.league (id, name, country_id) VALUES (2, '1 Liga', 1);

@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.coderslab.entity.enums.EventType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,6 +18,17 @@ public class Event {
 
     private EventType type;
 
+    @Column(columnDefinition = "Datetime")
     private LocalDateTime created;
 
+    private String teamName;
+
+
+    public Event() {
+    }
+
+    public Event(EventType type, LocalDateTime created) {
+        this.type = type;
+        this.created = created;
+    }
 }

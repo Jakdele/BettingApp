@@ -150,7 +150,12 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public List<Game> getUpcoming() {
-        return gameRepository.getAllByStartTimeAfter(LocalDateTime.now());
+        return gameRepository.getAllByStartTimeAfterAndFinishedIsFalse(LocalDateTime.now());
+    }
+
+    @Override
+    public List<Game> getLiveGames() {
+        return gameRepository.getAllByLiveGameIsTrue();
     }
 
     @Override

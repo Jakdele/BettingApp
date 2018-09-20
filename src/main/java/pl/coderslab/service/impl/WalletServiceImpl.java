@@ -10,6 +10,7 @@ import pl.coderslab.repository.WalletRepository;
 import pl.coderslab.service.WalletService;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Service
 public class WalletServiceImpl implements WalletService {
@@ -33,7 +34,7 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public void deposit(BigDecimal amount, Wallet wallet) {
-        Transaction transaction = new Transaction(amount, TransactionType.DEPOSIT, wallet);
+        Transaction transaction = new Transaction(amount, TransactionType.DEPOSIT, wallet, LocalDateTime.now());
         wallet.setBalance(wallet.getBalance().add(amount));
         transactionRepository.save(transaction);
         walletRepository.save(wallet);
@@ -41,7 +42,7 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public void withdraw(BigDecimal amount, Wallet wallet) {
-        Transaction transaction = new Transaction(amount,TransactionType.WITHDRAW,wallet);
+        Transaction transaction = new Transaction(amount,TransactionType.WITHDRAW,wallet, LocalDateTime.now());
         wallet.setBalance(wallet.getBalance().subtract(amount));
         transactionRepository.save(transaction);
         walletRepository.save(wallet);

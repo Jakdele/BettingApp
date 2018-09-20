@@ -28,13 +28,14 @@ public class Transaction {
     private Wallet wallet;
 
 
-    @Column(columnDefinition = "Datetime default LOCALTIME")
+    @Column(columnDefinition = "Datetime")
     private LocalDateTime created;
 
-    public Transaction(BigDecimal amount, @NotBlank TransactionType transactionType, Wallet wallet) {
+    public Transaction(BigDecimal amount, @NotBlank TransactionType transactionType, Wallet wallet, LocalDateTime created) {
         this.amount = amount;
         this.transactionType = transactionType;
         this.wallet = wallet;
+        this.created = created;
     }
 
     public Transaction() {

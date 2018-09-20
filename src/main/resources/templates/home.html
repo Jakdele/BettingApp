@@ -1,23 +1,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       layout:decorator="main-layout">
-<head>
-    <meta charset="UTF-8">
-    <title>Homepage</title>
-</head>
-<body>
 <div layout:fragment="content">
-
     <div sec:authorize="isAuthenticated()">
-        <p >User panel:<a th:href="@{/user/panel/}" th:text="'User panel'"></a> </p>
+        <p >User panel:<a th:href="@{/user/panel}" th:text="'User panel'"></a> </p>
         <p>Welcome: <span sec:authentication="name"></span></p>
+        <form th:action="@{/logoutpage}" method="post">
+            <input type="submit" value="Log out"/>
+        </form>
     </div>
 
     <div sec:authorize="hasRole('ADMIN')">
-        <p >Admin panel:<a th:href="@{/admin/panel/}" th:text="'Admin panel'"></a> </p>
+        <p >Admin panel:<a th:href="@{/admin/panel}" th:text="'Admin panel'"></a> </p>
         <p>Welcome: <span sec:authentication="name"></span></p>
     </div>
-
+    <div>
+        <a th:href="@{/livescore}" th:text="'Livescore'"></a>
+    </div>
     <h3>Upcoming games</h3>
     <table>
         <thead>
@@ -82,5 +81,4 @@
     </div>
 </div>
 </div>
-</body>
 </html>

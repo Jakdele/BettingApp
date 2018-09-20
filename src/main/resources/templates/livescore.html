@@ -1,0 +1,38 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      layout:decorator="main-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Livescores</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div>
+        <a th:href="@{/home}" th:text="'Home page'"></a>
+    </div>
+    <h3>Live games</h3>
+    <table >
+        <thead>
+        <tr>
+            <th>Match time</th>
+            <th>Teams</th>
+            <th>Events</th>
+        </tr>
+        </thead>
+        <tbody th:each="game: ${liveGames}" th:object="${game}">
+        <tr >
+            <td th:text="${#temporals.format(game.startTime, 'dd-MM-yyyy HH:mm')}"></td>
+            <td th:text="|*{homeTeam.name} vs *{awayTeam.name}|"></td>
+
+        </tr>
+        <tr th:each="event: *{events}" th:object="${event}">
+            <td th:text="${#temporals.format(event.created, 'dd-MM-yyyy HH:mm')}"></td>
+            <td th:text="*{teamName}"></td>
+            <td th:text="*{type}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

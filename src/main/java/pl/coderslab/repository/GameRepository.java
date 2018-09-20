@@ -8,10 +8,12 @@ import java.util.List;
 
 public interface GameRepository extends JpaRepository<Game, Integer> {
 
-    List<Game> getAllByStartTimeAfter(LocalDateTime date);
+    List<Game> getAllByStartTimeAfterAndFinishedIsFalse(LocalDateTime date);
 
     List<Game> getAllByHomeTeamId(int id);
 
     List<Game> getAllByAwayTeamId(int id);
+
+    List<Game> getAllByLiveGameIsTrue();
 
 }

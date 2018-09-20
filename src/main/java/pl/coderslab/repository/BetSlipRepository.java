@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface BetSlipRepository extends JpaRepository<BetSLip, Integer> {
     List<BetSLip> findAllByUser(User user);
-//    List<BetSLip> findAllByBetSlipTypeIsAnd
 
 }

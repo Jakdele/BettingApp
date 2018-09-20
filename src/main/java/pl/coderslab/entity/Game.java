@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -51,8 +52,11 @@ public class Game {
     @JsonIgnoreProperties({"players", "league", "teams", "country"})
     private League league;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
     private List<Event>events = new ArrayList<>();
+
+    @ColumnDefault("false")
+    private boolean liveGame = false;
 
     @OneToMany
     @JsonIgnoreProperties({"players", "league", "teams", "country"})
@@ -61,15 +65,5 @@ public class Game {
     @OneToOne(cascade = CascadeType.ALL)
     private Odd odd;
 
-
-//    @Column(nullable = true)
-//    @ColumnDefault("'0.0'")
-//    private double homeOdds;
-//    @Column(nullable = true)
-//    @ColumnDefault("'0.0'")
-//    private double drawOdds;
-//    @Column(nullable = true)
-//    @ColumnDefault("'0.0'")
-//    private double awayOdds;
 
 }
