@@ -1,12 +1,6 @@
 package pl.coderslab.dto;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import pl.coderslab.entity.Team;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
 
 public class PlayerDto {
 

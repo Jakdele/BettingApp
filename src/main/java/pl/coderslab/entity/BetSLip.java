@@ -1,6 +1,7 @@
 package pl.coderslab.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import pl.coderslab.entity.enums.BetSlipType;
 
 import javax.persistence.*;
@@ -9,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class BetSLip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,13 +19,9 @@ public class BetSLip {
 
     private double finalOdds;
 
-    private boolean active;
-
-    private boolean won;
-
     private BigDecimal stake;
 
-    private boolean completed;
+    private int counter;
 
     @ManyToOne
     private User user;

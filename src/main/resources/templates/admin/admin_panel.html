@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="main-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+</head>
+<body>
+<a th:href="@{/admin/finish/}" th:text="'Finish all matches'"></a><
+<a th:href="@{/admin/generate/}" th:text="'Generate unfinished matches'"></a>
+<a th:href="@{/admin/livefeed/}" th:text="'Start live feed'"></a>
+</tr>
+</body>
+</html>

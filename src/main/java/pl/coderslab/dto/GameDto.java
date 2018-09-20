@@ -1,13 +1,10 @@
 package pl.coderslab.dto;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import pl.coderslab.entity.Country;
 import pl.coderslab.entity.League;
 import pl.coderslab.entity.Player;
 import pl.coderslab.entity.Team;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

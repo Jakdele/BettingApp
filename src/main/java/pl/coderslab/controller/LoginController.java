@@ -18,7 +18,7 @@ public class LoginController {
         if (user == null) {
             return "forms/login";
         } else {
-            return "redirect:/homepage";
+            return "redirect:/home";
         }
     }
 }

@@ -1,15 +1,16 @@
 package pl.coderslab.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import pl.coderslab.entity.enums.BetStatus;
 import pl.coderslab.entity.enums.BetType;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Bet {
 
     @Id

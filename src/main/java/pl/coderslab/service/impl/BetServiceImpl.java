@@ -45,4 +45,9 @@ public class BetServiceImpl implements BetService {
         return betRepository.findAllByBetSlipId(id);
     }
 
+    @Override
+    public List<Bet> findAllByGameId(int id) {
+        return betRepository.findAllByGameId(id);
+    }
+
 }

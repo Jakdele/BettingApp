@@ -1,21 +1,18 @@
 package pl.coderslab.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @ToString(exclude = {"country", "league"})
 public class Game {
     @Id
@@ -45,6 +42,9 @@ public class Game {
     private Team awayTeam;
 
     private int awayScore;
+
+    @OneToMany(mappedBy = "game")
+    private List<Bet> bets = new ArrayList<>();
 
 
     @ManyToOne(fetch = FetchType.LAZY)

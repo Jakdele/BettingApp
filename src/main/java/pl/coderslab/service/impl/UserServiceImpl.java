@@ -11,6 +11,7 @@ import pl.coderslab.repository.RoleRepository;
 import pl.coderslab.repository.UserRepository;
 import pl.coderslab.service.UserService;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +51,10 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
-        user.setWallet(new Wallet());
+        Wallet wallet = new Wallet();
+        user.setWallet(wallet);
+        wallet.setUser(user);
+        wallet.setBalance(BigDecimal.valueOf(50));
         userRepository.save(user);
     }
 

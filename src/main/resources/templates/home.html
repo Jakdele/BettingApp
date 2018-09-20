@@ -9,7 +9,12 @@
 <div layout:fragment="content">
 
     <div sec:authorize="isAuthenticated()">
-        <p >User panel:<a th:href="@{/user/bets/}" th:text="'User panel'"></a> </p>
+        <p >User panel:<a th:href="@{/user/panel/}" th:text="'User panel'"></a> </p>
+        <p>Welcome: <span sec:authentication="name"></span></p>
+    </div>
+
+    <div sec:authorize="hasRole('ADMIN')">
+        <p >Admin panel:<a th:href="@{/admin/panel/}" th:text="'Admin panel'"></a> </p>
         <p>Welcome: <span sec:authentication="name"></span></p>
     </div>
 

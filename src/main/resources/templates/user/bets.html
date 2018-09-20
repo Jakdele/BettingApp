@@ -15,7 +15,7 @@
             <th>Type</th>
             <th>Final Odds</th>
             <th>Stake</th>
-            <th>Won</th>
+
             <th>Details</th>
         </tr>
         </thead>
@@ -25,7 +25,6 @@
             <td th:text="*{betSlipType}"></td>
             <td th:text="*{finalOdds}"></td>
             <td th:text="*{stake}"></td>
-            <td th:text="*{won}"></td>
             <td><a th:href="@{'/slip/details/' + ${betSlip.id}}" th:text="'Bet details'"></a></td>
         </tr>
         </tbody>

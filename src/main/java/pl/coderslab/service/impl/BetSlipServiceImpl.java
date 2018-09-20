@@ -2,13 +2,13 @@ package pl.coderslab.service.impl;
 
 import org.springframework.stereotype.Service;
 import pl.coderslab.entity.*;
+import pl.coderslab.entity.enums.BetSlipType;
 import pl.coderslab.entity.enums.TransactionType;
 import pl.coderslab.repository.BetSlipRepository;
 import pl.coderslab.repository.TransactionRepository;
 import pl.coderslab.repository.WalletRepository;
 import pl.coderslab.service.BetSlipService;
 import pl.coderslab.service.UserService;
-import pl.coderslab.service.WalletService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -50,10 +50,12 @@ public class BetSlipServiceImpl implements BetSlipService {
         }
         Wallet wallet = walletRepository.findByUser(betSLip.getUser());
         wallet.setBalance(wallet.getBalance().subtract(betSLip.getStake()));
-        Transaction transaction = new Transaction(betSLip.getStake(),TransactionType.SUBTRACT,wallet);
+        Transaction transaction = new Transaction(betSLip.getStake(),TransactionType.PLACED_BET,wallet);
         transactionRepository.save(transaction);
        betSLip.setBets(bets);
+       betSLip.setCounter(bets.size());
        betSLip.setFinalOdds((Double) session.getAttribute("finalOdds"));
+       betSLip.setBetSlipType(BetSlipType.OPEN);
        betSlipRepository.save(betSLip);
 
 

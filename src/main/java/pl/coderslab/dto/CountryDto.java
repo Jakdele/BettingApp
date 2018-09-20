@@ -1,13 +1,7 @@
 package pl.coderslab.dto;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import pl.coderslab.entity.League;
 
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 

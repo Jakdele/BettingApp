@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Bet;
-import pl.coderslab.entity.BetSLip;
-import pl.coderslab.entity.Odd;
 import pl.coderslab.entity.enums.BetStatus;
 import pl.coderslab.entity.enums.BetType;
 import pl.coderslab.service.BetService;

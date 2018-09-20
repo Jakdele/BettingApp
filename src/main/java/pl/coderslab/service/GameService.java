@@ -2,7 +2,6 @@ package pl.coderslab.service;
 
 import pl.coderslab.entity.Game;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface GameService {
@@ -22,4 +21,7 @@ public interface GameService {
     List<Game> getAllByAwayTeamId(int id);
 
     Game getOne(int id);
+
+    void generateResults(Game game);
+
 }

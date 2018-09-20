@@ -1,6 +1,5 @@
 package pl.coderslab;
 
-import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,10 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/registration").permitAll()
+                .antMatchers("/user/register").permitAll()
+                .antMatchers("/home/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/home")
                 .and().logout().logoutSuccessUrl("/logout")
@@ -62,19 +61,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and().exceptionHandling().accessDeniedPage("/403");
     }
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/user/add").permitAll()
-//                .antMatchers("/username").permitAll()
-//                .anyRequest().authenticated()
-//                .and().formLogin().loginPage("/login")
-//                .defaultSuccessUrl("/home")
-//                .and().logout().clearAuthentication(true).logoutSuccessUrl("/logout")
-//                .deleteCookies("JSESSIONID")
-//                .invalidateHttpSession(true)
-//                .permitAll()
-//                .and().exceptionHandling().accessDeniedPage("/403");
-//
-//    }
+
 }

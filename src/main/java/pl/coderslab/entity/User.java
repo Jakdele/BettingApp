@@ -1,7 +1,7 @@
 package pl.coderslab.entity;
 
-import lombok.Data;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.Getter;
+import lombok.Setter;
 import pl.coderslab.validator.CheckEmail;
 import pl.coderslab.validator.CheckLogin;
 
@@ -10,7 +10,8 @@ import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +36,7 @@ public class User {
     @NotBlank
     private String password;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Wallet wallet;
 
 

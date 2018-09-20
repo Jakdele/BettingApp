@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="main-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage funds</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/wallet/deposit}" method="post">
+    <input th:text="Amount" th:name="deposit"/>
+    <button name="wallet" th:text="'Deposit'" type="submit"></button>
+    </form>
+
+    <form th:action="@{/wallet/withdraw}" method="post">
+        <input th:text="Amount" th:name="withdraw"/>
+        <button name="wallet" th:text="'Withdraw'" type="submit"></button>
+    </form>
+</div>
+</body>
+</html>

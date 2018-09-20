@@ -1,5 +1,5 @@
 package pl.coderslab.entity.enums;
 
 public enum BetSlipType {
-    OPEN,CLOSED
+    OPEN,WON, LOST, PAID, CANCELLED
 }

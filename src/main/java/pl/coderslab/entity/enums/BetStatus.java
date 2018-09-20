@@ -1,5 +1,5 @@
 package pl.coderslab.entity.enums;
 
 public enum BetStatus {
-    PLACED,FINALIZED
+    PLACED,WON,LOST
 }

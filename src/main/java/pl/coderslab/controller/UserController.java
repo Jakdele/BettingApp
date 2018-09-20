@@ -1,7 +1,6 @@
 package pl.coderslab.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,7 +44,7 @@ public class UserController {
             return "forms/user";
         }
         userService.saveUser(user);
-        return "redirect:/homepage";
+        return "redirect:/home";
     }
 
     @GetMapping("/bets")
@@ -53,10 +52,24 @@ public class UserController {
         User user = userService.getCurrentUser();
         List<BetSLip> betHistory = betSlipService.getAllByUser(user);
         model.addAttribute("betHistory", betHistory);
-        model.addAttribute("user", user);
         return "user/bets";
 
     }
+
+    @GetMapping("/panel")
+    public String userPanel(Model model){
+        User user = userService.getCurrentUser();
+        model.addAttribute("user", user);
+        return "user/panel";
+    }
+
+    @GetMapping("/manage")
+    public String userDeposit(Model model){
+        User user = userService.getCurrentUser();
+        model.addAttribute("user", user);
+        return "user/manage";
+    }
+
 
 
 }

@@ -10,4 +10,6 @@ public interface BetService {
     double getOdds(Bet bet);
 
     List<Bet> findAllByBetSlipId(int id);
+
+    List<Bet> findAllByGameId(int id);
 }

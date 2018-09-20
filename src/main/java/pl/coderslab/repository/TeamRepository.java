@@ -1,7 +1,6 @@
 package pl.coderslab.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.coderslab.entity.Event;
 import pl.coderslab.entity.League;
 import pl.coderslab.entity.Team;
 
